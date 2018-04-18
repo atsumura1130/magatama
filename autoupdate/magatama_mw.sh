@@ -73,11 +73,11 @@ if [ "$1" = "maintenance" ];then
  fi
 
  if [ "${FLG_FORCE}" != "1" ];then
-  yum check-update -q > /dev/null
+  nice ionice yum check-update -q > /dev/null
  fi
  # if retuen code eq 100, begin KUSANAGI updates.
  # ForceFlag - Force Run Update
- if [ "$?" -eq "100" -o "${FLG_FORCE}" -eq "1" ]; then
+ if [ "$?" -eq "100" -o "${FLG_FORCE}" = "1" ]; then
  # Update KUSANAGI
   yum update -y -q > /dev/null
   if [ "$?" -eq "0" ]; then
