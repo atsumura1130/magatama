@@ -7,7 +7,7 @@ DATA=`echo '{"text":"'${MSG}'"}'`
 curl \
  -X POST \
  -H 'Content-type: application/json' \
- --data ${DATA} \
+ --data $"{DATA}"" \
  https://hooks.slack.com/services/XXXXXXXX/Saya-chan_Daisuki
 
-# do not run 'exit'.
+# do not write 'exit'.
