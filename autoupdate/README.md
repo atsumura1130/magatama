@@ -18,8 +18,9 @@ KUSANAGI's auto update and reboot utility.
 - (none) - show help.
 
 ## How to Slack Notyfy
-make `/root/bin/magatama_slack.sh`.
-require from maintenance-scripts, no +w parmission.
+make `/root/bin/magatama_slack.sh`.  
+require from maintenance-scripts, no +w parmission.  
+![Slack Notify Sample](./img-README/img-slack-notify-sample.png)
 
 ## Version history
 - 1.00 - 2018.04.18 Akira Tsumura
