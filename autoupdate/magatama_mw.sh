@@ -1,18 +1,19 @@
 #!/bin/sh
-# magatama maintenance
+
 # KUSANAGI Maintenance Window Script
-# 2018.04.18 Akira Tsumura @ LittleBits,LLC.
+# 2018.04.18 Ver.1.00 Akira Tsumura @ LittleBits,LLC.
+# https://github.com/atsumura1130/magatama/tree/master/autoupdate
 
 #---
 # Configure
 FLG_FN="/root/.magatama.mw"
 HOSTNAME=`hostname`
-MSG="${HOSTNAME}のアップデートが終わりました"
+MSG="${HOSTNAME} OS Update Success.(Maintenance Window)"
 
 # --
 # Setup - Install Script
 if [ "$1" = "setup" ]; then
- echo "# Run ./magatama_mw setup | sh"
+ echo "# Run sh ./magatama_mw setup | sh"
  # Auto Setup Script
  if [ ! -d "/root/bin" ];then
   echo "mkdir -p /root/bin"
@@ -99,11 +100,11 @@ KUSANAGI support scripts 'Magatama'
 maintenance-window - auto update script
 
 * Easy Setup
-1. put magatama_mw.sh in root dir.
-2. run './magatama_mw.sh setup | sh'
+1. put magatama_mw.sh in /root from GitHUB.
+2. run 'sh ./magatama_mw.sh setup | sh'
 3. run '/root/bin/magatama_mw.sh init'
-4. adjust crontab
-   crontab -e
+4. adjust maintenance window(crontab)
+   run 'crontab -e'
 5. force update and reboot test.
    run '/root/bin/magatama_mw.sh maintenance force'
 _EOL

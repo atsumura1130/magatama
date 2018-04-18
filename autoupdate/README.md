@@ -5,6 +5,9 @@ KUSANAGI's auto update and reboot utility.
 - download 'magatama_mw.sh' to KUSANAGI's /root.
 - run `sh magatama_mw.sh setup | sh`.
 - run `/root/bin/magatama_mw.sh`, show help.
+- run `/root/bin/magatama_mw.sh init`, setup crontab.
+- edit maintenance-window, `crontab -e`.
+- force run update `/root/bin/magatama_mw.sh maintenance force`, run yum update and reboot KUSANAGI(CentOS).
 
 ## Options
 - setup - show first setup script, pipe to /bin/sh.
@@ -16,4 +19,7 @@ KUSANAGI's auto update and reboot utility.
 
 ## How to Slack Notyfy
 make `/root/bin/magatama_slack.sh`.
-require from maintenance-script, no +w parmission.
+require from maintenance-scripts, no +w parmission.
+
+## Version history
+- 1.00 - 2018.04.18 Akira Tsumura
