@@ -20,7 +20,7 @@
 ## Slack通知
 `/root/bin/magatama_slack.sh`に、Slackの通知先を指定する事により、メンテナンス完了後に通知を行います。  
 `magatama_slack.sample.sh`をコピーして修正してください。  
-![Slack Notify Sample](./img-README/img-slack-notify-sample.png)
+![Slack Notify Sample](./img/img-slack-notify-sample.png)
 
 ## Version history
 - 1.00 - 2018.04.18 Akira Tsumura
