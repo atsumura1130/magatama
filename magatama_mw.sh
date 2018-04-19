@@ -6,7 +6,7 @@
 
 #---
 # Configure
-CFG_FILE='/root/bin/magatama.conf'
+CFG_FILE='./magatama.conf'
 if [ -f "$CFG_FILE" ]; then
  # Load Config
  . ${CFG_FILE}
@@ -66,9 +66,9 @@ if [ "$1" = "reboot" ];then
   # Delete RebootFlag File
   rm ${FLG_FN}
   # Kick notify script.
-  if [ -f /root/bin/magatama_notify.sh ]; then
+  if [ -f ./magatama_notify.sh ]; then
    # put MSG and MSG_STATUS
-   . /root/bin/magatama_notify.sh
+   . ./magatama_notify.sh
   fi
  fi
  exit 0
