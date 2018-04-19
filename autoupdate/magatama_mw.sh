@@ -1,14 +1,19 @@
 #!/bin/sh
 
 # KUSANAGI Maintenance Window Script
-# 2018.04.18 Ver.1.00 Akira Tsumura @ LittleBits,LLC.
+# 2018.04.19 Ver.1.10 Akira Tsumura @ LittleBits,LLC.
 # https://github.com/atsumura1130/magatama/tree/master/autoupdate
 
 #---
 # Configure
-FLG_FN="/root/.magatama.mw"
-HOSTNAME=`hostname`
-MSG="${HOSTNAME} OS Update Success.(Maintenance Window)"
+CFG_FILE='/root/bin/magatama.conf'
+if [ -f "$CFG_FILE" ]; then
+ # Load Config
+ . ${CFG_FILE}
+else
+ echo "Configraion file not found."
+ exit 1;
+fi
 
 # --
 # Setup - Install Script
