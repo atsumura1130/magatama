@@ -15,6 +15,14 @@ else
  exit 1;
 fi
 
+# CD to Base Dir.
+if [ -d "${CFG_BASEDIR}"]; then
+ cd ${CFG_BASEDIR}
+else
+ echo "Configration Error CFG_BASEDIR."
+ exit 1
+fi
+
 # --
 # Setup - Install Script
 if [ "$1" = "setup" ]; then
