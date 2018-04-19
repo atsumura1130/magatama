@@ -59,12 +59,13 @@ fi
 # ---
 # Reboot - Check success and erase flag file
 if [ "$1" = "reboot" ];then
- if [ -f "${FLG_FN}" ];then
+ if [ -f "${FLG_MW_FN}" ];then
   # Reboot success
   # Get Status Message
-  MSG_STATUS=`cat ${MSG_FN}`
+  MSG="${CFG_MW_MSG}"
+  MSG_STATUS=`cat ${FLG_MW_FN}`
   # Delete RebootFlag File
-  rm ${FLG_FN}
+  rm ${FLG_MW_FN}
   # Kick notify script.
   if [ -f ./magatama_notify.sh ]; then
    # put MSG and MSG_STATUS
@@ -92,7 +93,7 @@ if [ "$1" = "maintenance" ];then
   yum update -y -q > /dev/null
   if [ "$?" -eq "0" ]; then
    # Make Maintenance flag and write status message.
-   touch "${FLG_FN}" && echo "${MSG_STATUS}" > ${FLG_FN}
+   touch "${FLG_MW_FN}" && echo "${MSG_STATUS}" > ${FLG_MW_FN}
    # reboot
    sync && sync && sync && shutdown -r now && exit 0
   fi
