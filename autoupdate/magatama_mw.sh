@@ -58,9 +58,9 @@ if [ "$1" = "reboot" ];then
   # Reboot success
   # Delete RebootFlag File
   rm ${FLG_FN}
-  # notify to slack.
-  if [ -f /root/bin/magatama_slack.sh ]; then
-   . /root/bin/magatama_slack.sh
+  # Kick notify script.
+  if [ -f /root/bin/magatama_notify.sh ]; then
+   . /root/bin/magatama_notify.sh
   fi
  fi
  exit 0
