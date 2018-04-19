@@ -6,7 +6,7 @@
 
 #---
 # Configure
-CFG_FILE='./magatama.conf'
+CFG_FILE='/root/bin/magatama.conf'
 if [ -f "$CFG_FILE" ]; then
  # Load Config
  . ${CFG_FILE}
@@ -16,7 +16,7 @@ else
 fi
 
 # CD to Base Dir.
-if [ -d "${CFG_BASEDIR}"]; then
+if [ -d "${CFG_BASEDIR}" ]; then
  cd ${CFG_BASEDIR}
 else
  echo "Configration Error CFG_BASEDIR."
