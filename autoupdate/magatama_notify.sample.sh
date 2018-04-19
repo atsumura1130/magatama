@@ -3,7 +3,7 @@
 # put '/root/bin/magatama_slack.sh', no +x permission.
 # Change for your slack bot.
 
-DATA=`echo '{"text":"'${MSG}'"}'`
+DATA=`echo '{"text":"'${MSG}'('${MSG_STATUS')"}'`
 curl \
  -X POST \
  -H 'Content-type: application/json' \

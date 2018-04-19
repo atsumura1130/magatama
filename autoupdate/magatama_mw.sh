@@ -61,10 +61,13 @@ fi
 if [ "$1" = "reboot" ];then
  if [ -f "${FLG_FN}" ];then
   # Reboot success
+  # Get Status Message
+  MSG_STATUS=`cat ${MSG_FN}`
   # Delete RebootFlag File
   rm ${FLG_FN}
   # Kick notify script.
   if [ -f /root/bin/magatama_notify.sh ]; then
+   # put MSG and MSG_STATUS
    . /root/bin/magatama_notify.sh
   fi
  fi
@@ -76,6 +79,7 @@ fi
 if [ "$1" = "maintenance" ];then
  if [ "$2" = "force" ]; then
   FLG_FORCE=1;
+  MSG_STATUS=${CFG_MW_MSG_FORCE}
  fi
 
  if [ "${FLG_FORCE}" != "1" ];then
@@ -87,8 +91,8 @@ if [ "$1" = "maintenance" ];then
  # Update KUSANAGI
   yum update -y -q > /dev/null
   if [ "$?" -eq "0" ]; then
-   # Make Maintenance flag
-   touch "${FLG_FN}"
+   # Make Maintenance flag and write status message.
+   touch "${FLG_FN}" && echo "${MSG_STATUS}" > ${FLG_FN}
    # reboot
    sync && sync && sync && shutdown -r now && exit 0
   fi
