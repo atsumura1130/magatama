@@ -14,6 +14,7 @@
 - `init` - cronにスクリプトを登録します。
 - `maintenance` - yumリポジトリをチェックし、アップデートがあった場合はアップデート及びリブートを実行します。
 - `maintenance force` - yumリポジトリの状態に関わらず、強制的にアップデート処理を行います。
+- `maintenance dry-run` - Dry-Runを行います。処理を何も行わず、Notifyのみ実行します。
 - `reboot` - OS起動直後にcronから実行します。ステータスファイルを確認し、通知およびクリーンアップを行います。
 - (none) - ヘルプを表示します。
 
@@ -27,5 +28,9 @@
 `magatama_slack.sample.sh`をコピーして修正してください。  
 ![Slack Notify Sample](./img/img-slack-notify-sample.png)
 
+### Slack以外への通知方法
+各々の環境に併せ、このスクリプトを書き換えてください。
+
 ## Version history
-- 1.00 - 2018.04.18 Akira Tsumura
+- 1.00 - 2018.04.18 First Release
+- 1.10 - 2018.04.21 magatama_mwに必要な機能を追加。

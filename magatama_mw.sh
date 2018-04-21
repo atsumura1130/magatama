@@ -1,12 +1,14 @@
 #!/bin/sh
 
-# KUSANAGI Maintenance Window Script
-# 2018.04.19 Ver.1.10 Akira Tsumura @ LittleBits,LLC.
-# https://github.com/atsumura1130/magatama/tree/master/autoupdate
+# MAGATAMA - KUSANAGI 3rdparty utilities.
+
+# magatama_mw - Auto OS Update Script.
+# 2018.04.21 Ver.1.10 Akira Tsumura @ LittleBits,LLC.
+# https://github.com/atsumura1130/magatama/
 
 #---
 # Configure
-CFG_FILE='/root/bin/magatama.conf.sh'
+CFG_FILE='/root/bin/magatama_conf.sh'
 if [ -f "$CFG_FILE" ]; then
  # Load Config
  . ${CFG_FILE}

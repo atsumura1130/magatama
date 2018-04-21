@@ -1,8 +1,9 @@
 #!/bin/sh
 
+# MAGATAMA - KUSANAGI 3rdparty utilities.
+
 # Magatama Configuration File
-# KUSANAGI Maintenance 3rdparty utility.
-# 2018.04.19 Ver.1.10 Akira Tsumura @ LittleBits,LLC.
+# 2018.04.21 Ver.1.10 Akira Tsumura @ LittleBits,LLC.
 # https://github.com/atsumura1130/magatama/
 
 # Global Config
