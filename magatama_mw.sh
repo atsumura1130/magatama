@@ -115,7 +115,7 @@ case ${1} in
         fi
 
 		# Get yum check-update result.
-        if [ "${FLG_FORCE}" != "1" -a "${FLG_DRY}" = "0" ]; then
+        if [ "${FLG_FORCE}" != "1" -a "${FLG_DRY}" != "1" ]; then
             nice ionice yum check-update -q > /dev/null
         fi
 
