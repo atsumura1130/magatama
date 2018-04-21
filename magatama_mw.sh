@@ -69,7 +69,7 @@ case ${1} in
     reboot)
         if [ -f "${FLG_MW_FN}" ]; then
             # Get Status Message
-            MSG="${CFG_MW_MSG}"
+            MSG=${CFG_MW_MSG}
             MSG_STATUS=`cat ${FLG_MW_FN}`
 
             # Delete RebootFlag File
@@ -80,10 +80,10 @@ case ${1} in
                 /root/bin/magatama_mw_post.sh
 			fi
             # Error Handring
-            if [ "$?" -ne "0" ]; then
+            if [ "${?}" -ne "0" ]; then
                 # Notify Error.
-                MSG="${CFG_MW_MSG}"
-                MSG_STATUS="${CFG_MW_MSG_ERR_POST}"
+                MSG=${CFG_MW_MSG}
+                MSG_STATUS=${CFG_MW_MSG_ERR_POST}
                 if [ -f ./magatama_notify.sh ]; then
                     . ./magatama_notify.sh
                 fi
@@ -101,12 +101,12 @@ case ${1} in
     # Maintemance Window
     maintenance)
         # ForceFlag - Force Run Update
-        if [ "$2" = "force" ]; then
+        if [ "${2}" = "force" ]; then
             FLG_DRY=0;
             FLG_FORCE=1;
         fi
 
-        if [ "$2" = "dry-run" ]; then
+        if [ "${2}" = "dry-run" ]; then
             FLG_DRY=1;
             FLG_FORCE=0;
         fi
@@ -117,7 +117,7 @@ case ${1} in
         fi
 
         # if retuen code eq 100, have yum-repos updates.
-        if [ "$?" -eq "100" -o "${FLG_FORCE}" = "1" -o "${FLG_DRY}" = "1" ]; then
+        if [ "${?}" -eq "100" -o "${FLG_FORCE}" = "1" -o "${FLG_DRY}" = "1" ]; then
 
             if [ "${FLG_DRY}" = "1" ]; then
                 # ---
@@ -139,7 +139,7 @@ case ${1} in
                 fi
 
                 # Error Handring
-                if [ "$?" -ne "0" ]; then
+                if [ "${?}" -ne "0" ]; then
                     # Notify Error.
                     MSG=${CFG_MW_MSG}
                     MSG_STATUS=${CFG_MW_MSG_ERR_PRE}
@@ -152,7 +152,7 @@ case ${1} in
                 
                 # Update KUSANAGI
                 yum update -y -q > /dev/null
-                if [ "$?" -eq "0" ]; then
+                if [ "${?}" -eq "0" ]; then
                     # Make Maintenance flag and write status message.
                     touch "${FLG_MW_FN}" && echo "${MSG_STATUS}" > ${FLG_MW_FN}
                     # reboot
@@ -165,19 +165,8 @@ case ${1} in
     # ---
     # show Help - default
     *)
-        cat <<_EOL
-KUSANAGI support scripts 'Magatama'
-maintenance-window - auto update script
-
-* Easy Setup
-1. put magatama_mw.sh in /root from GitHUB.
-2. run 'sh ./magatama_mw.sh setup | sh'
-3. run '/root/bin/magatama_mw.sh init'
-4. adjust maintenance window(crontab)
-   run 'crontab -e'
-5. force update and reboot test.
-   run '/root/bin/magatama_mw.sh maintenance force'
-_EOL
+        # Must Double-quort.
+        echo "${CFG_MW_HELP}"
     ;;
 
 # ---
