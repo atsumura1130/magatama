@@ -16,3 +16,7 @@ FLG_MW_FN="/root/.magatama_mw.tmp"
 CFG_MW_MSG="${CFG_HOSTNAME} Maintenance Window Update."
 CFG_MW_MSG_Maintenance="Succeess."
 CFG_MW_MSG_FORCE="Manual Force Update"
+CFG_MW_MSG_DRYRUN="Dry-Run"
+CFG_MW_MSG_ERR_POST="Post-update script error."
+CFG_MW_MSG_ERR_PRE="Pre-update script error."
+
