@@ -32,7 +32,7 @@ case ${1} in
     setup)
         echo "# Run sh ./magatama_mw setup | sh"
         # Auto Setup Script
-        if [ ! -d "/root/bin" ];then
+        if [ ! -d "/root/bin" ]; then
             echo "mkdir -p /root/bin"
         fi
         echo "cp -prv ./magatama_mw.sh /root/bin/"
@@ -47,7 +47,7 @@ case ${1} in
             if [ -f "/root/bin/magatama_mw.sh" ]; then
             # Check crontab and insert auto run
             FLG=`crontab -l | grep "magatama_mw.sh" | wc -l`
-                if [ "${FLG}" = "0" ];then
+                if [ "${FLG}" = "0" ]; then
                     (crontab -l ;\
                         echo "@reboot /root/bin/magatama_mw.sh reboot" ;\
                         echo "00 03 * * *  /root/bin/magatama_mw.sh" ;\
@@ -67,7 +67,7 @@ case ${1} in
     # ---
     # Reboot - Check success and erase flag file
     reboot)
-        if [ -f "${FLG_MW_FN}" ];then
+        if [ -f "${FLG_MW_FN}" ]; then
             # Get Status Message
             MSG="${CFG_MW_MSG}"
             MSG_STATUS=`cat ${FLG_MW_FN}`
@@ -76,15 +76,15 @@ case ${1} in
             rm ${FLG_MW_FN}
 
             # Run Post update script
-            if [ -f "/root/bin/magatama_mw_post.sh" ];then
+            if [ -f "/root/bin/magatama_mw_post.sh" ]; then
                 /root/bin/magatama_mw_post.sh
+			fi
             # Error Handring
             if [ "$?" -ne "0" ]; then
                 # Notify Error.
                 MSG="${CFG_MW_MSG}"
                 MSG_STATUS="Post-update script error."
                 if [ -f ./magatama_notify.sh ]; then
-                    # put MSG and MSG_STATUS
                     . ./magatama_notify.sh
                 fi
                 exit 1
@@ -106,7 +106,7 @@ case ${1} in
             MSG_STATUS=${CFG_MW_MSG_FORCE}
         fi
 
-        if [ "${FLG_FORCE}" != "1" ];then
+        if [ "${FLG_FORCE}" != "1" ]; then
             nice ionice yum check-update -q > /dev/null
         fi
 
@@ -114,7 +114,7 @@ case ${1} in
         if [ "$?" -eq "100" -o "${FLG_FORCE}" = "1" ]; then
 
             # Run Pre update script
-            if [ -f "/root/bin/magatama_mw_pre.sh" ];then
+            if [ -f "/root/bin/magatama_mw_pre.sh" ]; then
                 /root/bin/magatama_mw_pre.sh
             fi
 
