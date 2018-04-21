@@ -17,6 +17,11 @@
 - `reboot` - OS起動直後にcronから実行します。ステータスファイルを確認し、通知およびクリーンアップを行います。
 - (none) - ヘルプを表示します。
 
+## 関連ファイル
+ - `magatama_notify.sample.sh` - Slack通知のサンプルファイルです。`magatama_notify.sh`にリネームしてください。
+ - `magatama_mw_pre.sh` - アップデート前に事前実行されるスクリプトです。戻り値が`0`でない場合、アップデートは中断されます。
+ - `magatama_mw_post.sh` - アップデート後、リブート後に実行されるスクリプトです。戻り値が`0`でない場合、以降の処理は中断されます。 
+
 ## Slack通知
 `/root/bin/magatama_slack.sh`に、Slackの通知先を指定する事により、メンテナンス完了後に通知を行います。  
 `magatama_slack.sample.sh`をコピーして修正してください。  
