@@ -104,27 +104,26 @@ case ${1} in
         if [ "$2" = "force" ]; then
             FLG_DRY=0;
             FLG_FORCE=1;
-            MSG_STATUS=${CFG_MW_MSG_FORCE}
         fi
 
         if [ "$2" = "dry-run" ]; then
             FLG_DRY=1;
             FLG_FORCE=0;
-            MSG_STATUS=${CFG_MW_MSG_DRYRUN}
         fi
 
-        if [ "${FLG_FORCE}" != "1" ]; then
+		# Get yum check-update result.
+        if [ "${FLG_FORCE}" != "1" -a "${FLG_DRY}" = "0" ]; then
             nice ionice yum check-update -q > /dev/null
         fi
 
         # if retuen code eq 100, have yum-repos updates.
-        if [ "$?" -eq "100" -o "${FLG_FORCE}" = "1" ]; then
+        if [ "$?" -eq "100" -o "${FLG_FORCE}" = "1" -o "${FLG_DRY}" = "1" ]; then
 
             if [ "${FLG_DRY}" = "1" ]; then
                 # ---
                 # is Dry-Run
-                MSG="${CFG_MW_MSG}"
-                MSG_STATUS="${CFG_MW_MSG_DRYRUN}"
+                MSG=${CFG_MW_MSG}
+                MSG_STATUS=${CFG_MW_MSG_DRYRUN}
                 if [ -f ./magatama_notify.sh ]; then
                     . ./magatama_notify.sh
                 fi
@@ -142,8 +141,8 @@ case ${1} in
                 # Error Handring
                 if [ "$?" -ne "0" ]; then
                     # Notify Error.
-                    MSG="${CFG_MW_MSG}"
-                    MSG_STATUS="${CFG_MW_MSG_ERR_PRE}"
+                    MSG=${CFG_MW_MSG}
+                    MSG_STATUS=${CFG_MW_MSG_ERR_PRE}
                     if [ -f ./magatama_notify.sh ]; then
                         # put MSG and MSG_STATUS
                         . ./magatama_notify.sh
