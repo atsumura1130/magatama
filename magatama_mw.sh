@@ -73,6 +73,22 @@ case ${1} in
             MSG_STATUS=`cat ${FLG_MW_FN}`
             # Delete RebootFlag File
             rm ${FLG_MW_FN}
+
+            # Run Post update script
+            if [ -f "/root/bin/magatama_mw_post.sh" ];then
+             /root/bin/magatama_mw_post.sh
+            # Error Handring
+            if [ "$?" -ne "0" ]; then
+                # Notify Error.
+                MSG="${CFG_MW_MSG}"
+                MSG_STATUS="Post-update script error."
+                if [ -f ./magatama_notify.sh ]; then
+                    # put MSG and MSG_STATUS
+                    . ./magatama_notify.sh
+                fi
+                exit 1
+            fi
+
             # Kick notify script.
             if [ -f ./magatama_notify.sh ]; then
                 # put MSG and MSG_STATUS
@@ -95,6 +111,22 @@ case ${1} in
 
         # if retuen code eq 100, have yum-repos updates.
         if [ "$?" -eq "100" -o "${FLG_FORCE}" = "1" ]; then
+
+            # Run Pre update script
+            if [ -f "/root/bin/magatama_mw_pre.sh" ];then
+             /root/bin/magatama_mw_pre.sh
+            # Error Handring
+            if [ "$?" -ne "0" ]; then
+                # Notify Error.
+                MSG="${CFG_MW_MSG}"
+                MSG_STATUS="Pre-update script error."
+                if [ -f ./magatama_notify.sh ]; then
+                    # put MSG and MSG_STATUS
+                    . ./magatama_notify.sh
+                fi
+                exit 1
+            fi
+            
             # Update KUSANAGI
             yum update -y -q > /dev/null
             if [ "$?" -eq "0" ]; then
