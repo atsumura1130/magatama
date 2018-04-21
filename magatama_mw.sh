@@ -157,7 +157,7 @@ case ${1} in
                 yum update -y -q > /dev/null
                 if [ "${?}" -eq "0" ]; then
                     # Make Maintenance flag and write status message.
-                    touch "${FLG_MW_FN}" && echo "${MSG_STATUS}" > ${FLG_MW_FN}
+                    touch "${FLG_MW_FN}" && echo "${CFG_MW_MSG_MAINTENANCE}" > ${FLG_MW_FN}
                     # reboot
                     sync && sync && sync && shutdown -r now && exit 0
                 fi
