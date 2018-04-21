@@ -12,7 +12,7 @@ DATA=`echo '{"text":"'${MSG}'('${MSG_STATUS}')"}'`
 curl \
  -X POST \
  -H 'Content-type: application/json' \
- --data $"{DATA}" \
+ --data "${DATA}" \
  ${SLACK_API} \
  > /dev/null
 
