@@ -51,8 +51,9 @@ case ${1} in
             FLG=`crontab -l | grep "magatama_mw.sh" | wc -l`
                 if [ "${FLG}" = "0" ]; then
                     (crontab -l ;\
+                        echo "# magatama_mw - Kick OS Auto Updater" ;\
                         echo "@reboot /root/bin/magatama_mw.sh reboot" ;\
-                        echo "00 03 * * *  /root/bin/magatama_mw.sh" ;\
+                        echo "00 03 * * *  /root/bin/magatama_mw.sh maintenance" ;\
                     ) | crontab - 
                 fi
             echo "Init succsess - check your crontab."
