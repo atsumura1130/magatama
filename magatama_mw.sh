@@ -6,7 +6,7 @@
 
 #---
 # Configure
-CFG_FILE='/root/bin/magatama.conf'
+CFG_FILE='/root/bin/magatama.conf.sh'
 if [ -f "$CFG_FILE" ]; then
  # Load Config
  . ${CFG_FILE}
@@ -43,7 +43,6 @@ case ${1} in
  # ---
  # Init - add crontab
  init)
-    if [ "$1" = "init" ]; then
         # Check magatama_mw script in /root/bin
         if [ -f "/root/bin/magatama_mw.sh" ]; then
         # Check crontab and insert auto run
@@ -104,8 +103,6 @@ case ${1} in
             # reboot
             sync && sync && sync && shutdown -r now && exit 0
         fi
-    else
-        # Non-Update
     fi
  ;;
 
