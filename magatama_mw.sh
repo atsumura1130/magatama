@@ -71,12 +71,13 @@ case ${1} in
             # Get Status Message
             MSG="${CFG_MW_MSG}"
             MSG_STATUS=`cat ${FLG_MW_FN}`
+
             # Delete RebootFlag File
             rm ${FLG_MW_FN}
 
             # Run Post update script
             if [ -f "/root/bin/magatama_mw_post.sh" ];then
-             /root/bin/magatama_mw_post.sh
+                /root/bin/magatama_mw_post.sh
             # Error Handring
             if [ "$?" -ne "0" ]; then
                 # Notify Error.
@@ -114,7 +115,9 @@ case ${1} in
 
             # Run Pre update script
             if [ -f "/root/bin/magatama_mw_pre.sh" ];then
-             /root/bin/magatama_mw_pre.sh
+                /root/bin/magatama_mw_pre.sh
+            fi
+
             # Error Handring
             if [ "$?" -ne "0" ]; then
                 # Notify Error.
